@@ -1,5 +1,6 @@
 package com.example.bmicalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -18,9 +19,11 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
 
-    private EditText weight, height;
-    private TextView resultText;
-    private Button calculate;
+//    private EditText weight, height;
+//    private TextView resultText;
+    private Button calculateHarrisBenedict;
+    private Button calcBmiButton;
+//    public String Bmi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,24 +32,32 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        calcBmiButton =  findViewById(R.id.calcBmiButton);
+        calculateHarrisBenedict= findViewById(R.id.howManyKcalButton);
+//
+//        weight=findViewById(R.id.Weight);
+//        height = findViewById(R.id.Height);
+//        resultText = findViewById(R.id.Result);
+//        calculate=findViewById(R.id.button);
+//
+//        calculate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                calculateBmi();
+//            }
+//        });
+//
+        calcBmiButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                launchActivityCalculateBmi();
             }
         });
 
-        weight=findViewById(R.id.Weight);
-        height = findViewById(R.id.Height);
-        resultText = findViewById(R.id.Result);
-        calculate=findViewById(R.id.button);
-
-        calculate.setOnClickListener(new View.OnClickListener() {
+        calculateHarrisBenedict.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calcualteBmi();
+                launchActivityHowManyCalories();
             }
         });
     }
@@ -73,41 +84,14 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-   public void calcualteBmi(){
-        String heightString = height.getText().toString();
-        String weightString = weight.getText().toString();
+    private void launchActivityCalculateBmi(){
+        Intent intent = new Intent(this, BmiActivity.class);
+        startActivity(intent);
+    }
+    private void launchActivityHowManyCalories(){
+        Intent intent = new Intent(this, HowManyCalories.class);
+        startActivity(intent);
+    }
 
-        if(!heightString.isEmpty() && !weightString.isEmpty()){
-            float heightValue= Float.parseFloat(heightString)/100;
-            float weightValue = Float.parseFloat(weightString);
 
-            float bmi = weightValue/(heightValue*heightValue);
-
-            displayBmi(bmi);
-        }
-   }
-
-   private void displayBmi(float value){
-        String bmiLabel= "";
-
-        if(Float.compare(value, 15f)<=0)
-            bmiLabel=getString(R.string.starved);
-        else if(Float.compare(value, 15f)>0&&  Float.compare(value, 16f) <= 0)
-            bmiLabel=getString(R.string.emaciation);
-        else if(Float.compare(value, 16f)>0&&  Float.compare(value, 18.5f) <= 0)
-            bmiLabel=getString(R.string.underweight);
-        else if(Float.compare(value, 18.5f)>0&&  Float.compare(value, 25f) <= 0)
-            bmiLabel=getString(R.string.optimal);
-        else if(Float.compare(value, 25f)>0&&  Float.compare(value, 30f) <= 0)
-            bmiLabel=getString(R.string.overweight);
-        else if(Float.compare(value, 30f)>0&&  Float.compare(value, 35f) <= 0)
-            bmiLabel=getString(R.string.obesity_level_I);
-        else if(Float.compare(value, 35f)>0&&  Float.compare(value, 40f) <= 0)
-            bmiLabel=getString(R.string.obesity_level_II);
-        else if(Float.compare(value, 40f)>0)
-            bmiLabel=getString(R.string.obesity_level_III);
-
-        bmiLabel=value+"\n\n"+bmiLabel;
-        resultText.setText(bmiLabel);
-   }
 }
