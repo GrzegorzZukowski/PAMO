@@ -3,9 +3,6 @@ package com.example.bmicalculator;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -13,17 +10,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+
+import com.example.bmicalculator.chart.CovidChartActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-
-//    private EditText weight, height;
-//    private TextView resultText;
     private Button calculateHarrisBenedict;
     private Button calcBmiButton;
-//    public String Bmi;
+    private Button covidQuizButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
         calcBmiButton =  findViewById(R.id.calcBmiButton);
         calculateHarrisBenedict= findViewById(R.id.howManyKcalButton);
-//
-//        weight=findViewById(R.id.Weight);
-//        height = findViewById(R.id.Height);
-//        resultText = findViewById(R.id.Result);
-//        calculate=findViewById(R.id.button);
-//
-//        calculate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                calculateBmi();
-//            }
-//        });
-//
+        Button covidChartButton = findViewById(R.id.covidChartButton);
+        Button covidQuizButton = findViewById(R.id.covidQuizButton);
+
         calcBmiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +42,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 launchActivityHowManyCalories();
+            }
+        });
+
+        covidChartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchActivityCovidChart();
+            }
+        });
+
+        covidQuizButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchActivityCovidQuiz();
             }
         });
     }
@@ -93,5 +91,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void  launchActivityCovidChart(){
+        Intent intent = new Intent(this, CovidChartActivity.class);
+        startActivity(intent);
+    }
 
+    private void launchActivityCovidQuiz(){
+        Intent intent= new Intent(this, QuizMainActivity.class);
+        startActivity(intent);
+    }
 }
