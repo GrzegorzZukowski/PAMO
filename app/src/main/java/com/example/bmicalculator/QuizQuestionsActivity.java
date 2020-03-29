@@ -19,20 +19,20 @@ public class QuizQuestionsActivity extends AppCompatActivity {
 
     String questions[] = {
             "W jakim kraju miała początek epidemia koronawirusa",
-            "W którym roku wtybuchła epidemia",
-            "Który z krajów europejskich był pierwszym w którym epidemia się rozprzestrzeniła",
-            "Jaki uklad, jako pierwszy, atakiuje wirus",
+            "W którym roku pojawiły się pierwsze przypadki zachorowań",
+            "Który z krajów europejskich był pierwszy w którym epidemia się rozprzestrzeniła znacząco",
+            "Jaki uklad atakiuje wirus",
             "Jaki jest najpoważniejszy skutek choroby",
-            "Jaka jest średnia śmietelność"
+            "Ile czasu mija od zarażenia do pierwszych objawów"
     };
-    String answers[] = {"Chiny","2020","Włochy","Układ oddechowy","Śmierć","10%"};
+    String answers[] = {"Chiny","2019","Włochy","Układ oddechowy","Śmierć","0-14 dni"};
     String opt[] = {
             "Japonia","Chiny","Korea Północna","USA",
             "2017","2018","2019","2020",
             "Hiszpania","Włochy","Grecja","Francja",
             "Układ krwionośny","Układ oddechowy","Układ nerwowy","Układ immunologiczny",
             "Śmierć","Niepełnosprawność","Syndrom Downa","Autyzm",
-            "2%","10%","30%","40%"
+            "Kilka godzin","0-14 dni","3 tygodnie","4 tygodnie"
     };
     int flag=0;
     public static int marks=0,correct=0,wrong=0;
